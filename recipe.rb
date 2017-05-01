@@ -35,8 +35,6 @@ class Nifi < FPM::Cookery::Recipe
     prop_content = prop_content.gsub(/=\.\/content_repository/, '=/var/lib/nifi/content_repository')
     prop_content = prop_content.gsub(/=\.\/provenance_repository/, '=/var/lib/nifi/provenance_repository')
 
-    puts prop_content
-
     File.open(nifi_properties, "w") {|file| file.puts prop_content }
   end
 
