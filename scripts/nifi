@@ -1,0 +1,10 @@
+#Systemd Environment File
+#Overwrite environment variables set in /opt/nifi/bin/nifi-env.sh
+
+#NIFI_HOME=/opt/nifi
+
+#NIFI_PID_DIR=/var/run
+
+#NIFI_LOG_DIR=/var/log/nifi
+
+#JAVA_HOME=
