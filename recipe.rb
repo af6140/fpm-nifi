@@ -7,7 +7,11 @@ class Nifi < FPM::Cookery::Recipe
 
   name 'nifi'
   arch 'all'
-  revision '0'
+  def self.build_rev
+    ENV.fetch('BUILD_REVISION', '0')
+  end
+
+  revision build_rev()
 
   description 'Apache Nifi'
 
