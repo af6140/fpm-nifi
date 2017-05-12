@@ -1,9 +1,9 @@
 class Nifi < FPM::Cookery::Recipe
   require 'pp'
 
-  version '1.1.2'
+  version '1.2.0'
   source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
-  md5 '06113cdc410fdd75d7a2a805c9d44777'
+  md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
 
   name 'nifi'
   arch 'all'
@@ -13,7 +13,7 @@ class Nifi < FPM::Cookery::Recipe
 
   config_files '/opt/nifi/conf/nifi.properties', '/opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',
     '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml',
-    '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi'
+    '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
 
   directories '/opt/nifi', '/var/log/nifi', '/var/lib/nifi', '/var/run/nifi'
 
@@ -34,6 +34,7 @@ class Nifi < FPM::Cookery::Recipe
     prop_content = prop_content.gsub(/=\.\/flowfile_repository/, '=/var/lib/nifi/flowfile_repository')
     prop_content = prop_content.gsub(/=\.\/content_repository/, '=/var/lib/nifi/content_repository')
     prop_content = prop_content.gsub(/=\.\/provenance_repository/, '=/var/lib/nifi/provenance_repository')
+    prop_content = prop_content.gsub(/=\.conf\/flow\.xml\.gz/, '=/opt/nifi/flow/flow.xml.gz')
 
     File.open(nifi_properties, "w") {|file| file.puts prop_content }
   end
@@ -47,10 +48,13 @@ class Nifi < FPM::Cookery::Recipe
       destdir("#{app_dir}").install builddir("nifi-#{version}/" +File.basename(asset))
     end
 
+    opt("nifi/flow").mkdir
     destdir("#{app_dir}/bin").install workdir("scripts/nifi-env.sh")
     var("lib/nifi").mkdir
     var("log/nifi").mkdir
     var("run/nifi").mkdir
+    var("lib/work").mkdir
+    var("lib/tmp").mkdir
     root('/usr/lib/systemd/system').install workdir('scripts/nifi.service')
 
     root('/etc/sysconfig/').install workdir('scripts/nifi')
