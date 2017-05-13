@@ -16,7 +16,7 @@ class Nifi < FPM::Cookery::Recipe
   description 'Apache Nifi'
 
   chain_package true
-  chain_recipes "base", "standard", "cloud", "data", "database", "format", "logging", "messaging", "scripting", "network"
+  chain_recipes "base", "standard", "cloud", "data", "database", "format", "logging", "messaging", "scripting", "network", "docs"
 
   depends "nifi-base", "nifi-standard", "nifi-cloud", "nifi-data", "nifi-database", "nifi-format", "nifi-logging", "nifi-messaging", "nifi-scripting", "nifi-network"
   def build
@@ -41,4 +41,3 @@ class Nifi < FPM::Cookery::Recipe
   def install
   end
 end
-
