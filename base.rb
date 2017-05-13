@@ -1,3 +1,5 @@
+require_relative './build_config.rb'
+
 class NifiBase < FPM::Cookery::Recipe
   require 'pp'
 
@@ -7,18 +9,18 @@ class NifiBase < FPM::Cookery::Recipe
     ENV.fetch('BUILD_REVISION', '0')
   end
 
-  #source '', :with => :noop
+  version BuildConfig.VERSION
+  revision BuildConfig.build_rev()
 
-  version "1.2.0"
-  revision build_rev()
-
-  source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
-  md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
+  #source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
+  #md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
+  source BuildConfig.SOURCE
+  md5 BuildConfig.MD5SUM
 
   description 'Apache Nifi Base'
-  # config_files '/opt/nifi/conf/nifi.properties', '/opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',
-  #   '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml',
-  #   '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
+  config_files '/opt/nifi/conf/nifi.properties', '/opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',
+    '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml',
+    '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
 
   directories '/opt/nifi', '/var/log/nifi', '/var/lib/nifi', '/var/run/nifi'
 
@@ -70,10 +72,7 @@ class NifiBase < FPM::Cookery::Recipe
     var("run/nifi").mkdir
     var("lib/work").mkdir
     var("lib/tmp").mkdir
-    root('/usr/lib/systemd/system').install workdir('scripts/nifi.service')
 
-    root('/etc/sysconfig/').install workdir('scripts/nifi')
   end
 
 end
-

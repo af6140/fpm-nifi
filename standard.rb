@@ -18,6 +18,11 @@ class NifiStandard < FPM::Cookery::Recipe
   end
 
   def install
+    # systemd service and environment file
+    root('/usr/lib/systemd/system').install workdir('scripts/nifi.service')
+    root('/etc/sysconfig/').install workdir('scripts/nifi')
+
+    # basic nars
     app_dir = '/opt/nifi'
     standard_nars = %W(
       nifi-framework-api-#{version}.nar
