@@ -1,18 +1,18 @@
 require_relative './build_config.rb'
 
-class NifiCloud < FPM::Cookery::Recipe
+class NifiDocs < FPM::Cookery::Recipe
   require 'pp'
 
-  name 'nifi-cloud'
+  name 'nifi-docs'
   arch 'all'
   def self.build_rev
     ENV.fetch('BUILD_REVISION', '0')
   end
 
-  version BuildConfig.VERSION
+  version BuildConfig::VERSION
   revision BuildConfig.build_rev()
-  source BuildConfig.SOURCE
-  md5 BuildConfig.MD5SUM
+  source BuildConfig::SOURCE
+  md5 BuildConfig::MD5SUM
 
   depends 'nifi-base'
 

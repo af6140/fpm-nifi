@@ -1,3 +1,4 @@
+
 class NifiStandard < FPM::Cookery::Recipe
   require 'pp'
 
@@ -14,7 +15,22 @@ class NifiStandard < FPM::Cookery::Recipe
 
   depends 'nifi-base'
 
+  #config_files '/opt/nifi/conf/nifi.properties', /opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',
+  #  '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml',
+  #  '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
+
   def build
+    # change nifi data directories
+    nifi_properties = builddir("nifi-#{version}/conf/nifi.properties")
+
+    prop_content = File.read(nifi_properties)
+    prop_content = prop_content.gsub(/=\.\/database_repository/, '=/var/lib/nifi/database_repository')
+    prop_content = prop_content.gsub(/=\.\/flowfile_repository/, '=/var/lib/nifi/flowfile_repository')
+    prop_content = prop_content.gsub(/=\.\/content_repository/, '=/var/lib/nifi/content_repository')
+    prop_content = prop_content.gsub(/=\.\/provenance_repository/, '=/var/lib/nifi/provenance_repository')
+    prop_content = prop_content.gsub(/=\.conf\/flow\.xml\.gz/, '=/opt/nifi/flow/flow.xml.gz')
+
+    File.open(nifi_properties, "w") {|file| file.puts prop_content }
   end
 
   def install
