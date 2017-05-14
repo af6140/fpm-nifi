@@ -5,7 +5,7 @@ class NifiDocs < FPM::Cookery::Recipe
 
   name 'nifi-docs'
   arch 'all'
-  
+
   version BuildConfig::VERSION
   revision BuildConfig.build_rev()
   source BuildConfig::SOURCE

@@ -1,3 +1,4 @@
+require_relative './build_config'
 class NifiFormat < FPM::Cookery::Recipe
   require 'pp'
 

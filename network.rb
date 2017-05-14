@@ -1,3 +1,4 @@
+require_relative './build_config'
 class NifiNetwork < FPM::Cookery::Recipe
   require 'pp'
 
