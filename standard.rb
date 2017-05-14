@@ -70,6 +70,8 @@ class NifiStandard < FPM::Cookery::Recipe
     conf_assets.each do | asset |
       destdir("#{app_dir}/conf").install builddir(File.join("nifi-#{version}/conf", File.basename(asset)))
     end
-  end
 
+    destdir("#{app_dir}/bin").install workdir("scripts/nifi-env.sh")
+
+  end
 end

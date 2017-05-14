@@ -48,7 +48,6 @@ class NifiCommons < FPM::Cookery::Recipe
     end
 
     opt("nifi/flow").mkdir
-    destdir("#{app_dir}/bin").install workdir("scripts/nifi-env.sh")
     var("lib/nifi").mkdir
     var("log/nifi").mkdir
     var("run/nifi").mkdir
