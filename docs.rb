@@ -5,10 +5,7 @@ class NifiDocs < FPM::Cookery::Recipe
 
   name 'nifi-docs'
   arch 'all'
-  def self.build_rev
-    ENV.fetch('BUILD_REVISION', '0')
-  end
-
+  
   version BuildConfig::VERSION
   revision BuildConfig.build_rev()
   source BuildConfig::SOURCE

@@ -3,14 +3,10 @@ class NifiLoggin < FPM::Cookery::Recipe
 
   name 'nifi-logging'
   arch 'all'
-  def self.build_rev
-    ENV.fetch('BUILD_REVISION', '0')
-  end
-
-  version "1.2.0"
-  revision build_rev()
-  source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
-  md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
+  version BuildConfig::VERSION
+  revision BuildConfig.build_rev()
+  source BuildConfig::SOURCE
+  md5 BuildConfig::MD5SUM
 
   depends 'nifi-base'
 

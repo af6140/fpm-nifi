@@ -1,12 +1,9 @@
 require_relative './build_config.rb'
-class NifiBase < FPM::Cookery::Recipe
+class NifiCommons < FPM::Cookery::Recipe
   require 'pp'
 
-  name 'nifi-base'
+  name 'nifi-commons'
   arch 'all'
-  def self.build_rev
-    ENV.fetch('BUILD_REVISION', '0')
-  end
 
   version BuildConfig::VERSION
   revision BuildConfig.build_rev()
@@ -16,7 +13,7 @@ class NifiBase < FPM::Cookery::Recipe
   source BuildConfig::SOURCE
   md5 BuildConfig::MD5SUM
 
-  description 'Apache Nifi Base'
+  description 'Apache Nifi Commons, dpendency and bootstrap jars, directory structures'
 
   directories '/opt/nifi', '/var/log/nifi', '/var/lib/nifi', '/var/run/nifi'
 

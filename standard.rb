@@ -1,23 +1,18 @@
-
+require_relative './build_config'
 class NifiStandard < FPM::Cookery::Recipe
   require 'pp'
 
   name 'nifi-standard'
   arch 'all'
-  def self.build_rev
-    ENV.fetch('BUILD_REVISION', '0')
-  end
 
-  version "1.2.0"
-  revision build_rev()
-  source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
-  md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
+  version BuildConfig::VERSION
+  revision BuildConfig.build_rev()
+  source BuildConfig::SOURCE
+  md5 BuildConfig::MD5SUM
 
   depends 'nifi-base'
 
-  #config_files '/opt/nifi/conf/nifi.properties', /opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',
-  #  '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml',
-  #  '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
+  config_files '/opt/nifi/conf/nifi.properties', /opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',  '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml', '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi', '/opt/nifi/flow'
 
   def build
     # change nifi data directories
@@ -67,6 +62,11 @@ class NifiStandard < FPM::Cookery::Recipe
       if (File.extname(asset)==".nar" && standard_nars.include?(File.basename(asset)))
         destdir("#{app_dir}/lib").install builddir(File.join("nifi-#{version}/lib", File.basename(asset)))
       end
+    end
+
+    conf_assets = Dir.glob(builddir() + "nifi-#{version}/conf/*" )
+    conf_assets.each do | asset |
+      destdir("#{app_dir}/conf").install builddir(File.join("nifi-#{version}/conf", File.basename(asset)))
     end
   end
 
