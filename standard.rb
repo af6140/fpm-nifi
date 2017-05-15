@@ -10,9 +10,9 @@ class NifiStandard < FPM::Cookery::Recipe
   source BuildConfig::SOURCE
   md5 BuildConfig::MD5SUM
 
-  depends 'nifi-base'
+  depends 'nifi-commons'
 
-  description 'Common used processors and controller services, systemd configurations'
+  description 'Commonly used processors and controller services, systemd configurations'
 
   config_files '/opt/nifi/conf/nifi.properties', '/opt/nifi/conf/bootstrap.conf', '/opt/nifi/conf/zookeeper.properties',  '/opt/nifi/conf/logback.xml', '/opt/nifi/conf/authorizers.xml', '/opt/nifi/conf/state-management.xml', '/opt/nifi/conf/login-identity-providers.xml', '/opt/nifi/conf/bootstrap-notification-services.xml', '/etc/sysconfig/nifi'
 

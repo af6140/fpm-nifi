@@ -13,7 +13,7 @@ class NifiScripting < FPM::Cookery::Recipe
   source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
   md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
 
-  depends 'nifi-base'
+  depends 'nifi-commons'
 
   def build
   end

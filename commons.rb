@@ -13,7 +13,7 @@ class NifiCommons < FPM::Cookery::Recipe
   source BuildConfig::SOURCE
   md5 BuildConfig::MD5SUM
 
-  description 'Apache Nifi Commons, dpendency and bootstrap jars, directory structures'
+  description 'Apache Nifi dpendency and bootstrap jars, directory structures'
 
   directories '/opt/nifi', '/var/log/nifi', '/var/lib/nifi', '/var/run/nifi'
 

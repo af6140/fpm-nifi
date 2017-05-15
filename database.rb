@@ -9,7 +9,7 @@ class NifiDataBase < FPM::Cookery::Recipe
   source BuildConfig::SOURCE
   md5 BuildConfig::MD5SUM
 
-  depends 'nifi-base'
+  depends 'nifi-commons'
 
   def build
   end
