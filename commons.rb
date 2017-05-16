@@ -8,8 +8,6 @@ class NifiCommons < FPM::Cookery::Recipe
   version BuildConfig::VERSION
   revision BuildConfig.build_rev()
 
-  #source "http://mirrors.ibiblio.org/apache/nifi/#{version}/nifi-#{version}-bin.tar.gz"
-  #md5 'e1e1c54bf88402f1c5d5b35cfeb1dc76'
   source BuildConfig::SOURCE
   md5 BuildConfig::MD5SUM
 
@@ -23,11 +21,6 @@ class NifiCommons < FPM::Cookery::Recipe
 
 
   def build
-    bat_files= Dir.glob(builddir("nifi-#{version}/bin/*.bat"))
-    bat_files.each do |bat_file|
-      File.delete bat_file
-    end
-
   end
 
   def install

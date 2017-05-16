@@ -28,6 +28,13 @@ class NifiStandard < FPM::Cookery::Recipe
     prop_content = prop_content.gsub(/=\.conf\/flow\.xml\.gz/, '=/opt/nifi/flow/flow.xml.gz')
 
     File.open(nifi_properties, "w") {|file| file.puts prop_content }
+
+    #remove windows batch file
+    bat_files= Dir.glob(builddir("nifi-#{version}/bin/*.bat"))
+    bat_files.each do |bat_file|
+      File.delete bat_file
+    end
+
   end
 
   def install
@@ -71,6 +78,11 @@ class NifiStandard < FPM::Cookery::Recipe
       destdir("#{app_dir}/conf").install builddir(File.join("nifi-#{version}/conf", File.basename(asset)))
     end
 
+    bin_assets = Dir.glob(builddir() + "nifi-#{version}/bin/*" )
+    bin_assets.each do | asset |
+      destdir("#{app_dir}/bin").install builddir(File.join("nifi-#{version}/bin", File.basename(asset)))
+    end
+    #overwrite nifi-env.sh
     destdir("#{app_dir}/bin").install workdir("scripts/nifi-env.sh")
 
   end
