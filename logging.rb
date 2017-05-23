@@ -11,6 +11,8 @@ class NifiLoggin < FPM::Cookery::Recipe
 
   depends 'nifi-commons'
 
+  post_install 'scripts/post_install.sh'
+
   def build
   end
 
