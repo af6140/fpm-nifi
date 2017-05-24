@@ -44,8 +44,8 @@ class NifiCommons < FPM::Cookery::Recipe
     var("lib/nifi").mkdir
     var("log/nifi").mkdir
     var("run/nifi").mkdir
-    var("lib/work").mkdir
-    var("lib/tmp").mkdir
+    var("lib/nifi/work").mkdir
+    var("lib/nifi/tmp").mkdir
 
   end
 

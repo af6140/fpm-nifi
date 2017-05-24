@@ -27,4 +27,12 @@ if [ -d /opt/nifi ]; then
   chown -R ${USERNAME}:${GROUPNAME} /opt/nifi/flow
 fi
 
+if [ -f /opt/nifi/bin/nifi.sh ]; then
+  chmod 755 /opt/nifi/bin/nifi.sh
+fi
+
+if [ -f /opt/nifi/bin/nifi-env.sh ]; then
+  chmod 755 /opt/nifi/bin/nifi-env.sh
+fi
+
 exit 0
