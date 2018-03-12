@@ -33,6 +33,12 @@ class NifiData < FPM::Cookery::Recipe
       nifi-kite-nar-#{version}.nar
       nifi-ignite-nar-#{version}.nar
       nifi-parquet-nar-#{version}.nar
+      nifi-kafka-0-11-nar-#{version}.nar
+      nifi-kafka-1-0-nar-#{version}.nar
+      nifi-kudu-nar-#{version}.nar
+      nifi-livy-nar-#{version}.nar
+      nifi-livy-controller-service-api-nar-#{version}.nar
+      nifi-confluent-platform-nar-#{version}.nar
     )
     lib_assets = Dir.glob(builddir() + "nifi-#{version}/lib/*" )
     lib_assets.each do | asset |

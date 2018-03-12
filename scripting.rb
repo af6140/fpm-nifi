@@ -22,6 +22,7 @@ class NifiScripting < FPM::Cookery::Recipe
     app_dir = '/opt/nifi'
     target_nars = %W(
        nifi-scripting-nar-#{version}.nar
+       nifi-groovyx-nar-#{version}.nar
 
     )
     lib_assets = Dir.glob(builddir() + "nifi-#{version}/lib/*" )

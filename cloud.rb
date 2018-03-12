@@ -21,6 +21,8 @@ class NifiCloud < FPM::Cookery::Recipe
     app_dir = '/opt/nifi'
     target_nars = %W(
       nifi-aws-nar-#{version}.nar
+      nifi-aws-service-api-nar-#{version}.nar
+      nifi-gcp-services-api-nar-#{version}.nar
       nifi-azure-nar-#{version}.nar
       nifi-gcp-nar-#{version}.nar
     )

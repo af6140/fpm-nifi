@@ -67,6 +67,9 @@ class NifiStandard < FPM::Cookery::Recipe
       nifi-record-serialization-services-nar-#{version}.nar
       nifi-enrich-nar-#{version}.nar
       nifi-distributed-cache-services-nar-#{version}.nar
+      nifi-lookup-services-nar-#{version}.nar
+      nifi-metrics-reporter-service-api-nar-#{version}.nar
+      nifi-metircs-reporting-nar-#{version}.nar
     )
     lib_assets = Dir.glob(builddir() + "nifi-#{version}/lib/*" )
     lib_assets.each do | asset |
