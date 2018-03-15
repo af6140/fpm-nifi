@@ -24,7 +24,7 @@ if [ -d /var/lib/nifi/tmp ]; then
 fi
 
 if [ -d /opt/nifi ]; then
-  chown -R ${USERNAME}:${GROUPNAME} /opt/nifi/flow
+  chown -R ${USERNAME}:${GROUPNAME} /opt/nifi
 fi
 
 if [ -f /opt/nifi/bin/nifi.sh ]; then
