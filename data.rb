@@ -11,6 +11,7 @@ class NifiData < FPM::Cookery::Recipe
 
   depends 'nifi-commons'
 
+  pre_install 'scripts/pre_install'
   post_install 'scripts/post_install.sh'
 
   def build

@@ -11,6 +11,9 @@ class Nifi < FPM::Cookery::Recipe
 
   description 'Apache Nifi'
 
+  pre_install 'scripts/pre_install'
+  post_install 'scripts/post_install.sh'
+
   chain_package true
   chain_recipes "commons", "standard", "cloud", "data", "database", "format", "logging", "messaging", "scripting", "networking", "docs"
 
