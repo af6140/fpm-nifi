@@ -11,7 +11,7 @@ class Nifi < FPM::Cookery::Recipe
 
   description 'Apache Nifi'
 
-  pre_install 'scripts/pre_install'
+  pre_install 'scripts/pre_install.sh'
   post_install 'scripts/post_install.sh'
 
   chain_package true
