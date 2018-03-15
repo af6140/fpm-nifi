@@ -23,10 +23,6 @@ if [ -d /var/lib/nifi/tmp ]; then
   chown -R ${USERNAME}:${GROUPNAME} /var/lib/nifi/tmp
 fi
 
-if [ -d /opt/nifi ]; then
-  chown -R ${USERNAME}:${GROUPNAME} /opt/nifi
-fi
-
 if [ -f /opt/nifi/bin/nifi.sh ]; then
   chmod 755 /opt/nifi/bin/nifi.sh
 fi
