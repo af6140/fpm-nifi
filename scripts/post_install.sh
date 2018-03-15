@@ -31,7 +31,7 @@ if [ -f /opt/nifi/bin/nifi-env.sh ]; then
   chmod 755 /opt/nifi/bin/nifi-env.sh
 fi
 
-if [ -d /usr/lib/tmpfiles.d ]
+if [ -d /usr/lib/tmpfiles.d ]; then
   echo "d /var/run/nifi 0755 nifi nifi -" > /usr/lib/tmpfiles.d/nifi.conf
 fi
 
