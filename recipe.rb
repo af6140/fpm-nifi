@@ -10,6 +10,9 @@ class Nifi < FPM::Cookery::Recipe
   md5 BuildConfig::MD5SUM
 
   description 'Apache Nifi'
+  pre_install 'scripts/pre_install.sh'
+  post_install 'scripts/post_install.sh'
+
 
   chain_package true
   chain_recipes "commons", "standard", "cloud", "data", "database", "format", "logging", "messaging", "scripting", "networking", "docs"
