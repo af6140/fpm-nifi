@@ -17,7 +17,7 @@ class Nifi < FPM::Cookery::Recipe
   chain_package true
   chain_recipes "commons", "standard", "cloud", "data", "database", "format", "logging", "messaging", "scripting", "networking", "docs"
 
-  depends "nifi-commons", "nifi-standard", "nifi-cloud", "nifi-data", "nifi-database", "nifi-format", "nifi-logging", "nifi-messaging", "nifi-scripting", "nifi-networking"
+  depends "nifi-commons", "nifi-standard", "nifi-cloud", "nifi-data", "nifi-database", "nifi-format", "nifi-logging", "nifi-messaging", "nifi-scripting", "nifi-networking", "nifi-docs"
 
   def build
   end
